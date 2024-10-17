@@ -3,8 +3,10 @@ import dotenv from "dotenv/config";
 import date from "./date";
 import { getPagramsURL, getPath } from "./getURL";
 import viewEngine from "./viewEngine";
+import initWebRouter from "./src/route/web";
 const app = express();
 viewEngine(app);
+initWebRouter(app);
 const port = process.env.PORT;
 app.get("/", (req, res) => {
   res.render("home");
