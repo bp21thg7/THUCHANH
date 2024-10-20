@@ -1,7 +1,8 @@
 const HomeController = (req, res) => {
   return res.render("main", {
-    header: "header",
-    footer: "footer",
+    data: {
+      title: "Trang chủ",
+    },
   });
 };
 export { HomeController };

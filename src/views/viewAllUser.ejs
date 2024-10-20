@@ -1,0 +1,38 @@
+<table class="table table-hover container">
+    <thead>
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Username</th>
+            <th scope="col">Full name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Setting</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% data.rows.forEach(function(user, index) { %>
+            <tr>
+                <th scope="row">
+                    <%= index + 1 %>
+                </th>
+                <td>
+                    <%= user.username %>
+                </td>
+                <td>
+                    <%= user.fullname %>
+                </td>
+                <td>
+                    <%= user.address %>
+                </td>
+                <td class="fs-5">
+                    <a href="/user/view/<%= user.username %>" class="btn"><i class="bi bi-eye-fill"></i></a>
+                    <a href="/user/edit/<%= user.username %>" class="btn"><i
+                            class="bi bi-pencil-square text-success mx-2"></i></a>
+                    <form action="/api/delete" method="post" class="d-inline-block">
+                        <input type="hidden" name="username" value="<%= user.username %>" />
+                        <button class="btn" type="submit"><i class="bi bi-trash3-fill text-danger"></i></button>
+                    </form>
+                </td>
+                <% }); %>
+            </tr>
+    </tbody>
+</table>
