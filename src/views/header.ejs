@@ -14,7 +14,9 @@
             <li class="nav-item"><a href="/viewalluser" class="nav-link">List User</a></li>
 
             <% if (fullname !=null) {%>
-                <li class="nav-item"><a href="#" class="nav-link text-dark pe-1">hello cô ba,</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-dark pe-1">
+                        <%= fullname %>,
+                    </a></li>
                 <li class="nav-item"><a href="/logout" class="nav-link text-danger ps-0">Đăng xuất</a></li>
                 <% }else{%>
                     <li class="nav-item text-dark"><a href="/login" class="nav-link"><i

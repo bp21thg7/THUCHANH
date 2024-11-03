@@ -1,31 +1,77 @@
-<form action="/api/adduser" method="post" class="container">
-    <div class="mb-3">
-        <label for="exampleInputuser1" class="form-label">Username</label>
-        <input type="text" name="username" class="form-control" id="exampleInputuser1" aria-describedby="emailHelp">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputnname1" class="form-label">Full name</label>
-        <input type="text" name="fullname" class="form-control" id="exampleInputnamel1" aria-describedby="emailHelp">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputaddress1" class="form-label">Address</label>
-        <input type="text" name="address" class="form-control" id="exampleInputaddress1" aria-describedby="emailHelp">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputsex1" class="form-label">Gender</label>
-        <select required class="form-select" name="sex" aria-label="Default select example">
-            <option>Chọn giới tính</option>
-            <option value="nam">Nam</option>
-            <option value="nu">Nữ</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email</label>
-        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<% if(messageError) {%>
+
+    <form action="/api/adduser" method="post" class="container">
+        <div class="mb-3">
+            <label for="exampleInputuser1" class="form-label">Username</label>
+            <input type="text" name="username" class="form-control" id="exampleInputuser1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputnname1" class="form-label">Full name</label>
+            <input type="text" name="fullname" value="<%= data.user.fullname %>" class="form-control"
+                id="exampleInputnamel1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputaddress1" class="form-label">Address</label>
+            <input type="text" name="address" value="<%= data.user.address %>" class="form-control"
+                id="exampleInputaddress1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputsex1" class="form-label">Gender</label>
+            <select required class="form-select" name="sex" aria-label="Default select example">
+                <option>Chọn giới tính</option>
+                <option value="nam" <% if (data.user.sex==="nam" ){ %>selected
+                    <%}%>>Nam
+                </option>
+                <option value="nu" <% if (data.user.sex==="nu" ){ %>selected
+                    <%}%>>Nữ
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="email" name="email" value="<%= data.user.email %>" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <% } else{%>
+        <form action="/api/adduser" method="post" class="container">
+            <div class="mb-3">
+                <label for="exampleInputuser1" class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" id="exampleInputuser1"
+                    aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputnname1" class="form-label">Full name</label>
+                <input type="text" name="fullname" class="form-control" id="exampleInputnamel1"
+                    aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputaddress1" class="form-label">Address</label>
+                <input type="text" name="address" class="form-control" id="exampleInputaddress1"
+                    aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputsex1" class="form-label">Gender</label>
+                <select required class="form-select" name="sex" aria-label="Default select example">
+                    <option>Chọn giới tính</option>
+                    <option value="nam">Nam</option>
+                    <option value="nu">Nữ</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <% } %>

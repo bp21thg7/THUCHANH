@@ -53,7 +53,22 @@ const getLoginPage = async (req, res) => {
 // xử lý form
 const addUser = async (req, res) => {
   const data = req.body;
+  const users = await userModel.getDetailByUsername(data.username);
+  if (users.length > 0) {
+    res.locals.messageError = "Tài khoản đã tồn tại";
+    return res.render("main", {
+      data: {
+        title: "Thêm người dùng mới",
+        page: "addUser",
+        user: data,
+      },
+    });
+  }
   await userModel.addUser(data);
+  req.session.isLogin = true;
+  req.session.username = data.username;
+  req.session.fullname = data.fullname;
+  req.session.role = 1;
   res.redirect("/viewalluser");
 };
 const editUser = async (req, res) => {
@@ -64,6 +79,9 @@ const editUser = async (req, res) => {
 const delUser = async (req, res) => {
   const data = req.body;
   await userModel.delUser(data);
+  if (req.session.username == req.params.username) {
+    req.session.destroy();
+  }
   res.redirect("/viewalluser");
 };
 const login = async (req, res) => {

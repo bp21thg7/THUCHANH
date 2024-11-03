@@ -1,4 +1,4 @@
-<form action="/api/edituser" method="post" class="container">
+<form action="/api/edituser/<%= data.user.username %>" method="post" class="container">
     <div class="mb-3">
         <label for="exampleInputuser1" class="form-label">Username</label>
         <input type="text" name="username" class="form-control" id="exampleInputuser1" aria-describedby="emailHelp"
