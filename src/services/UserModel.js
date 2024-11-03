@@ -28,15 +28,14 @@ const addUser = async (data) => {
 };
 const editUser = async (data) => {
   const [rows, fields] = await pool.execute(
-    "UPDATE `users` SET `username` = ?, `fullname` = ?, `address` = ?, `sex` = ?, `email` = ? WHERE `username` = ?",
-    [
-      data.username,
-      data.fullname,
-      data.address,
-      data.sex,
-      data.email,
-      data.usernameEdit,
-    ]
+    "UPDATE `users` SET `fullname` = ?, `address` = ?, `sex` = ?, `email` = ? WHERE `username` = ?",
+    [data.fullname, data.address, data.sex, data.email, data.usernameEdit]
   );
 };
-export default { getAllUser, getDetailByUsername, addUser, editUser };
+const delUser = async (data) => {
+  const [rows, fields] = await pool.execute(
+    "DELETE FROM `users` WHERE `username` = ?",
+    [data.username]
+  );
+};
+export default { getAllUser, getDetailByUsername, addUser, editUser, delUser };
