@@ -1,5 +1,7 @@
 import { compareSync } from "bcrypt";
 import userModel from "../services/UserModel";
+import groupModel from "../services/GroupModel";
+import productModel from "../services/ProductModel";
 const getListUsers = async (req, res) => {
   const users = await userModel.getAllUser();
   return res.status(200).json({
@@ -89,6 +91,13 @@ const logout = async (req, res) => {
     status: "Success",
   });
 };
+const getAllGroup = async (req, res) => {
+  const group = await groupModel.getAllGroup();
+  return res.status(200).json({
+    status: "Success",
+    group: group,
+  });
+};
 export default {
   getListUsers,
   getDetailUserByUsername,
@@ -97,4 +106,5 @@ export default {
   delUser,
   login,
   logout,
+  getAllGroup,
 };

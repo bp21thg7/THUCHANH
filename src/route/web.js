@@ -4,53 +4,58 @@ import AboutController from "../controllers/AboutController";
 import ContactController from "../controllers/ContactController";
 import UserController from "../controllers/UserController";
 import auth from "../middlewares/auth";
-import apicontroller from "../controllers/ApiController";
-const router = express.Router();
+import ApiController from "../controllers/ApiController";
+// const router = express.Router();
 const initWebRouter = (app) => {
   app.use(auth.globalVariable);
-  router.get("/", HomeController);
-  router.get("/about", AboutController);
-  router.get("/contact", ContactController);
-  router.get("/viewalluser", UserController.getViewAllUserPage);
-  router.get(
+  app.get("/", HomeController);
+  app.get("/about", AboutController);
+  app.get("/contact", ContactController);
+  app.get("/viewalluser", UserController.getViewAllUserPage);
+  app.get(
     "/user/view/:username",
     auth.isMineAuthAdmin,
     UserController.getDetailUserPage
   );
-  router.get("/adduser", UserController.getAddUserPage);
-  router.get(
+  app.get("/adduser", UserController.getAddUserPage);
+  app.get(
     "/edituser/:username",
     auth.isMineAuthAdmin,
     UserController.getEditUserPage
   );
-  router.get("/login", UserController.getLoginPage);
-  router.get("/logout", UserController.logout);
+  app.get("/login", UserController.getLoginPage);
+  app.get("/logout", UserController.logout);
 
-  router.post("/api/adduser", UserController.addUser);
-  router.post(
+  app.post("/api/adduser", UserController.addUser);
+  app.post(
     "/api/edituser/:username",
     auth.isMineAuthAdmin,
     UserController.editUser
   );
-  router.post(
+  app.post(
     "/api/deluser/:username",
     auth.isMineAuthAdmin,
     UserController.delUser
   );
-  router.post("/api/login", UserController.login);
+  app.post("/api/login", UserController.login);
 
   // api
-  router.get("/api/v1/getlistuser", apicontroller.getListUsers);
-  router.get(
+  app.get("/api/v1/getlistuser", ApiController.getListUsers);
+  app.get(
     "/api/v1/getdetailuserbyusername",
-    apicontroller.getDetailUserByUsername
+    ApiController.getDetailUserByUsername
   );
-  router.get("/api/v1/logout", apicontroller.logout);
+  app.get("/api/v1/logout", ApiController.logout);
 
-  router.post("/api/v1/adduser", apicontroller.addUser);
-  router.post("/api/v1/edituser", apicontroller.editUser);
-  router.post("/api/v1/deluser", apicontroller.delUser);
-  router.post("/api/v1/login", apicontroller.login);
-  return app.use("/", router);
+  app.post("/api/v1/adduser", ApiController.addUser);
+  app.post("/api/v1/edituser", ApiController.editUser);
+  app.post("/api/v1/deluser", ApiController.delUser);
+  app.post("/api/v1/login", ApiController.login);
+
+  // api react
+  app.get("/api/getallgroup", ApiController.getAllGroup);
+
+  // return app.use("/api", router);
 };
+
 export default initWebRouter;
