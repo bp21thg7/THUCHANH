@@ -8,7 +8,10 @@ import initWebRouter from "./src/route/web";
 import RedisStore from "connect-redis";
 import session from "express-session";
 import { createClient } from "redis";
+import cors from "cors";
+
 const app = express();
+app.use(cors());
 const redisClient = createClient({
   password: "35C07DZlgDH394mS2SPBhOF5yy8yNxWQ",
   socket: {

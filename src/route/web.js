@@ -54,6 +54,8 @@ const initWebRouter = (app) => {
 
   // api react
   app.get("/api/getallgroup", ApiController.getAllGroup);
+  app.get("/api/getallproduct", ApiController.getAllProduct);
+  app.post("/api/addProduct", ApiController.addProduct);
 
   // return app.use("/api", router);
 };

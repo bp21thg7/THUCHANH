@@ -95,8 +95,18 @@ const getAllGroup = async (req, res) => {
   const group = await groupModel.getAllGroup();
   return res.status(200).json({
     status: "Success",
-    group: group,
+    groups: group,
   });
+};
+const getAllProduct = async (req, res) => {
+  const product = await productModel.getAllProduct();
+  return res.status(200).json({
+    status: "Success",
+    products: product,
+  });
+};
+const addProduct = async (req, res) => {
+  const data = req.body;
 };
 export default {
   getListUsers,
@@ -107,4 +117,6 @@ export default {
   login,
   logout,
   getAllGroup,
+  getAllProduct,
+  addProduct,
 };

@@ -10,4 +10,11 @@ const getDetailProductById = async (productId) => {
   );
   return rows;
 };
-export default { getAllProduct, getDetailProductById };
+const addProduct = async (data) => {
+  const [rows, fields] = await pool.execute(
+    "INSERT INTO `sanpham` (`ten`, `gia`, `hinhanh`, `mota`, `idnhom`) VALUES (?, ?, ?, ?, ?)",
+    [data.ten, data.gia, data.hinhanh, data.mota]
+  );
+  return rows;
+};
+export default { getAllProduct, getDetailProductById, addProduct };
